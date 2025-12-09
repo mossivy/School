@@ -1,0 +1,60 @@
+% Course Preamble
+% Essential packages
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xifthen}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{chemfig}
+\usepackage{tikz}
+\usepackage{tabularx}
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+
+% Lecture command - Optimized for lecture_manager.lua
+\makeatletter
+\def\@lecture{}%
+\def\@lecturedate{}%
+\newcommand{\lecture}[3]{
+    \ifthenelse{\isempty{#3}}{%
+        \def\@lecture{Lecture #1}%
+    }{%
+        \def\@lecture{Lecture #1: #3}%
+    }%
+    \def\@lecturedate{#2}%
+    \chapter*{\@lecture}
+    \addcontentsline{toc}{chapter}{Lecture #1: #3}
+    \marginpar{\small\textsf{\mbox{#2}}}
+}
+
+% Fancy headers
+\pagestyle{fancy}
+\fancyhead[R]{\@lecture}
+\fancyhead[L]{\@lecturedate}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{}
+\fancyfoot[C]{\leftmark}
+\makeatother
+
+% Course-specific macros (add your own here)
+% Common math shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}

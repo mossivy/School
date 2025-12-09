@@ -1,0 +1,66 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+
+\definecolor{tableheader}{HTML}{D0D0FF} % light bluish header
+
+% Box style
+\newtcolorbox{weekbox}[1][]{
+    enhanced,
+    width=\textwidth,
+    colback=white,
+    colframe=black,
+    boxrule=0.8pt,
+    arc=2mm,
+    left=6pt, right=6pt,
+    top=6pt, bottom=6pt,
+    #1
+}
+
+\begin{document}
+
+% ---- FIXED TABLE HERE ----
+\begin{tabularx}{\linewidth}{|X|X|X|}
+\hline
+	Strategy Name & Strategy Details & Is this New? \\ 
+	\hline
+	Study chapter questions 
+	& Create a document with the given study questions where I answer the questions with no resources. I then determine if I was correct, see where I went wrong, and try to prevent this in the future (this is my preferred method of study)
+	& No \\
+	\hline
+	Read Chapter Summary
+	& Read chapter summary to determine gaps in knowledge and re-read those sections of the chapter
+	& No \\
+	\hline
+	In class activities &
+	Complete the in-class activities and compare it with my groups responses on grade-scope &
+	Yes  \\
+	\hline
+	DSM Pearson Mastering HW &
+	Meant as a final concept check to test myself &
+	No \\
+\hline
+\end{tabularx}
+
+\section*{Weekly Layout}
+\begin{weekbox}
+\begin{tabularx}{\linewidth}{|X|X|X|X|X|X|X|}
+\hline
+\rowcolor{tableheader}
+Monday & Tuesday & Wednesday & Thursday & Friday & Saturday & Sunday \\
+\hline
+       & & & 12/4 Nothing & 12/5 Create Study Plan& 12/6 Nothin (UGA SEC)& 12/7 Chpt1\&2 Summary, Questions, In class \\  % Row 2
+\hline
+12/8 Chpt3\&4 Summary, Questions, In class & 12/9 Chpt5\&6 Summary, Questions, In class & 12/10 Chpt7\&8 Summary, Questions, In class & 12/11 Chpt9\&10 Summary, Questions, In class & 12/12 Chpt11\&12 Summary, Questions, In class & 12/13 Chpt13\&14 Summary, Questions, In class & 12/14 Nothing, Birthday!\\  % Row 3
+\hline
+12/15 Chapter 15 Summary, Study Qs, In-class, AND DSM for weak areas& 12/16 DSM in weak areas& & & & & \\  % Row 3
+
+\hline
+\end{tabularx}
+\end{weekbox}
+
+\end{document}
+

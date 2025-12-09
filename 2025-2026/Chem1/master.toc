@@ -1,0 +1,2 @@
+\contentsline {chapter}{Lecture 1: GasLaw}{2}{chapter*.2}%
+\contentsline {chapter}{Lecture 2: ChemFigPractice}{3}{chapter*.3}%
