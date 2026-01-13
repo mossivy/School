@@ -552,6 +552,19 @@ EOF
 success "Makefile created"
 
 # ============================================
+# COPY SCRIPTS
+# ============================================
+
+info "Copying scripts..."
+
+cp "$SCHOOL_DIR/scripts/lecture.sh" "$COURSE_DIR/"
+cp "$SCHOOL_DIR/scripts/studyguide.sh" "$COURSE_DIR/"
+cp "$SCHOOL_DIR/scripts/metadata.sh" "$COURSE_DIR/"
+chmod +x "$COURSE_DIR"/*.sh
+
+success "Scripts copied"
+
+# ============================================
 # CREATE README
 # ============================================
 
@@ -564,20 +577,12 @@ cat > "$COURSE_DIR/README.md" << EOF
 **Instructor:** $INSTRUCTOR  
 **Template Type:** $TEMPLATE_TYPE
 
-## Directory Structure
-
-\`\`\`
-$COURSE_CODE/
-├── master.tex          # Main document
-├── preamble.tex        # Package imports and custom commands
-├── notes/              # Individual lecture files
-├── figures/            # Images and diagrams
-├── exams/              # Exam study materials
-├── studyGuides/        # Topic-specific study guides
-└── UltiSnips/          # Custom LaTeX snippets
-\`\`\`
-
 ## Quick Start
+
+### Create new lecture
+\`\`\`bash
+./lecture.sh new 01 "Introduction"
+\`\`\`
 
 ### Compile notes
 \`\`\`bash
@@ -594,31 +599,6 @@ make watch
 make clean
 \`\`\`
 
-### Create new lecture
-1. Copy \`notes/lec_template.tex\` to \`notes/lec_XX.tex\`
-2. Edit the lecture number, date, and title
-3. Add to \`master.tex\` between \`% start lectures\` and \`% end lectures\`:
-   \`\`\`latex
-   \input{notes/lec_XX.tex}
-   \`\`\`
-
-## Snippets
-
-Custom UltiSnips are in \`UltiSnips/tex.snippets\`. 
-Make sure your \`.vimrc\` includes the path to this directory.
-
-## Tips
-
-- Use colored boxes: \`keypoint\`, \`clinical\`, \`mechanism\`, \`important\`, \`caution\`
-- Add figures: \`\fig[width]{path}{caption}\`
-- Mark TODOs: \`\todo{description}\`
-- Questions: \`\question{what to review}\`
-
-## Resources
-
-- Textbook: 
-- Online: 
-- Notes: 
 EOF
 
 success "README.md created"
@@ -678,13 +658,6 @@ echo -e "${BLUE}Template:${NC}    $TEMPLATE_TYPE"
 echo ""
 echo -e "${BLUE}Next steps:${NC}"
 echo "  1. cd $COURSE_DIR"
-echo "  2. Edit master.tex with course info"
-echo "  3. Create first lecture: cp notes/lec_template.tex notes/lec_01.tex"
-echo "  4. Add to master.tex: \input{notes/lec_01.tex}"
-echo "  5. Compile: make"
-echo ""
-echo -e "${BLUE}Quick commands:${NC}"
-echo "  make          # Compile PDF"
-echo "  make watch    # Auto-compile on changes"
-echo "  make clean    # Remove auxiliary files"
+echo "  2. ./lecture.sh new 01 \"Introduction\""
+echo "  3. make"
 echo ""

@@ -1,0 +1,51 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box, style=rounded];
+
+    subgraph cluster_repo {
+        label="Repo Root";
+        style=filled;
+        color=lightgrey;
+
+        root_makefile [label="Makefile"];
+        scripts [label="scripts/"];
+        
+        subgraph cluster_scripts {
+            label="";
+            style=invis;
+            new_course [label="new_course.sh"];
+            lecture_script [label="lecture.sh"];
+            studyguide_script [label="studyguide.sh"];
+            metadata_script [label="metadata.sh"];
+        }
+        
+        root_makefile -> new_course [label="make new-course"];
+        scripts -> new_course;
+        scripts -> lecture_script;
+        scripts -> studyguide_script;
+        scripts -> metadata_script;
+    }
+
+    subgraph cluster_course {
+        label="Course Directory (e.g., ANAT401)";
+        
+        course_makefile [label="Makefile"];
+        lecture_sh [label="lecture.sh"];
+        studyguide_sh [label="studyguide.sh"];
+        metadata_sh [label="metadata.sh"];
+        master_tex [label="master.tex"];
+        notes [label="notes/"];
+        
+        lecture_sh -> master_tex [label="compiles"];
+        studyguide_sh -> notes [label="reads from"];
+        metadata_sh -> notes [label="reads/writes to"];
+        course_makefile -> master_tex [label="compiles"];
+    }
+    
+    new_course -> lecture_sh [label="copies"];
+    new_course -> studyguide_sh [label="copies"];
+    new_course -> metadata_sh [label="copies"];
+    new_course -> course_makefile [label="creates"];
+    new_course -> master_tex [label="creates"];
+    new_course -> notes [label="creates"];
+}
